@@ -1,1 +1,4 @@
 left off @ https://devcenter.heroku.com/articles/getting-started-with-nodejs#provision-a-database
+
+
+Profile release: node_modules/.bin/sequelize db:migrate
