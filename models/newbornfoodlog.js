@@ -7,12 +7,11 @@ module.exports = function(sequelize, DataTypes) {
     breastfed: DataTypes.TIME,
     notes: DataTypes.TEXT,
     userId: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+
+  newbornfoodlog.associate = (models) => {
+    newbornfoodlog.belongsTo(models.AuthOUserId)
+  }
+
   return newbornfoodlog;
 };

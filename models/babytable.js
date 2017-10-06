@@ -6,12 +6,10 @@ module.exports = function(sequelize, DataTypes) {
     birthdate: DataTypes.DATE,
     gender: DataTypes.STRING,
     userId: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+
+  BabyTable.associate = (models) => {
+    BabyTable.belongsTo(models.AuthOUserId)
+  }
   return BabyTable;
 };

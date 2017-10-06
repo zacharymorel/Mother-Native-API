@@ -4,12 +4,11 @@ module.exports = function(sequelize, DataTypes) {
     clocktimerstampstart: DataTypes.TIME,
     clocktimerstampstop: DataTypes.TIME,
     userId: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+
+  contractionTimerTable.associate = (models) => {
+    contractionTimerTable.belongsTo(models.AuthOUserId)
+  }
+
   return contractionTimerTable;
 };
