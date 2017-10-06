@@ -1,9 +1,7 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var ProfileTable = sequelize.define('ProfileTable', {
-    name: DataTypes.STRING,
-    username: DataTypes.TEXT,
-    passwordhash: DataTypes.STRING
+  var AuthOUserId = sequelize.define('AuthOUserId', {
+    userId: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
@@ -11,5 +9,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return ProfileTable;
+  return AuthOUserId;
 };

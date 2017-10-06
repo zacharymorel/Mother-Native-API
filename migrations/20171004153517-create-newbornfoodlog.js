@@ -23,6 +23,9 @@ module.exports = {
       notes: {
         type: Sequelize.TEXT
       },
+      userId: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

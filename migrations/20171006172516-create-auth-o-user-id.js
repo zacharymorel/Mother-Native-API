@@ -1,18 +1,12 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('contractionTimerTables', {
+    return queryInterface.createTable('AuthOUserIds', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
-      },
-      clocktimerstampstart: {
-        type: Sequelize.TIME
-      },
-      clocktimerstampstop: {
-        type: Sequelize.TIME
       },
       userId: {
         type: Sequelize.STRING
@@ -28,6 +22,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('contractionTimerTables');
+    return queryInterface.dropTable('AuthOUserIds');
   }
 };

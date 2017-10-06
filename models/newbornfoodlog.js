@@ -5,7 +5,8 @@ module.exports = function(sequelize, DataTypes) {
     sleep: DataTypes.TIME,
     bottle: DataTypes.INTEGER,
     breastfed: DataTypes.TIME,
-    notes: DataTypes.TEXT
+    notes: DataTypes.TEXT,
+    userId: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
