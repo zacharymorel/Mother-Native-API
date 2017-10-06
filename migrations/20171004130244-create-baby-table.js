@@ -20,6 +20,9 @@ module.exports = {
       gender: {
         type: Sequelize.STRING
       },
+      image: {
+        type: Sequelize.STRING
+      },
       userId: {
         type: Sequelize.STRING
       },
