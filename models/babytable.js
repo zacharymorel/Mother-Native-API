@@ -11,12 +11,6 @@ module.exports = function(sequelize, DataTypes) {
               // ^^^^^^
   },{
     classMethods:{
-      associate:function(models){
-        BabyTable.belongsTo(models.AuthOUserId, {
-          foreignKey:'userId',
-          onDelete: 'CASCADE'
-      });
-      }
     }
   });
 
