@@ -14,7 +14,7 @@ router.use(cors());
 // =================================
 // === ALL BABIES FOR USERID =======
 // =================================
-router.get('/baby', checkJwt, (req, res) => {
+router.get('/baby', (req, res) => {
   console.log('1', user)
     // models.BabyTable.findAll({
     //   where: {
