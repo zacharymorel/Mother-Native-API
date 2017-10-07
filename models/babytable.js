@@ -6,9 +6,7 @@ module.exports = function(sequelize, DataTypes) {
     duedate: DataTypes.DATE,
     birthdate: DataTypes.DATE,
     gender: DataTypes.STRING,
-    image: DataTypes.STRING,
-    // userId: DataTypes.STRING
-              // ^^^^^^
+    userId: DataTypes.STRING
   },{
     classMethods:{
     }

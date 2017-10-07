@@ -20,9 +20,9 @@ app.use(cookieParser());
 
 
 
-app.use('/', login);
-app.use('/users', users);
-app.use('/images', images)
+app.use('/api', baby);
+app.use('/api/users', users);
+app.use('/api/images', images)
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

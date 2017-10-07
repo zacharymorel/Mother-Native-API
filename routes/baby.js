@@ -5,7 +5,7 @@ var router = express.Router();
 // === LOGIN PAGE ==================
 // =================================
 
-router.get('/login', function(req, res, next) {
+router.get('/baby', function(req, res, next) {
   res.send({message: "you've made it!"});
 });
 
