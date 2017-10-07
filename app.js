@@ -5,8 +5,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var pg = require('pg');
 
-var login = require('./routes/login');
-var users = require('./routes/users');
+var baby = require('./routes/baby')
+var mom = require('./routes/mom');
+var images = require('./routes/images');
 
 var app = express();
 
@@ -19,10 +20,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 
-
 app.use('/api', baby);
-app.use('/api/users', users);
-app.use('/api/images', images)
+app.use('/api/mom', mom);
+app.use('/api', images)
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

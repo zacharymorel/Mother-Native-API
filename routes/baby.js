@@ -1,17 +1,24 @@
 var express = require('express');
 var router = express.Router();
+var models = require('../models')
 
 // =================================
-// === LOGIN PAGE ==================
+//  HANDLE BABY AND BABY LOG ROUTES 
 // =================================
 
-router.get('/baby', function(req, res, next) {
-  res.send({message: "you've made it!"});
+
+// =================================
+// === ALL BABIES FOR USERID =======
+// =================================
+router.get('/baby', (req, res) => {
+    // models.BabyTable.findAll({
+    //   where: {
+    //     userId: req.user.userid
+    //   }
+    // })
+  res.json({message: "you've made it!"});
 });
 
-// ==================================
-// === SING UP PAGE =================
-// ==================================
 
 
 

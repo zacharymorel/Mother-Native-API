@@ -1,5 +1,12 @@
-var express = require(express)
+var express = require('express')
 var router = express.Router()
+var models = require('../models')
+
+
+// ==========================
+// ==== IMAGE UPLOAD ========
+// ==========================
+
 
 // ==========================
 // ==== BABY IMAGE UPLOAD ===
@@ -14,4 +21,4 @@ router.post('/upload', (req, res) => {
 
 
 
-module.exports = Router
+module.exports = router
