@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models')
+var checkJwt = require('../middleware/jwt.js')
 
 // =================================
 //  HANDLE BABY AND BABY LOG ROUTES 
@@ -10,10 +11,11 @@ var models = require('../models')
 // =================================
 // === ALL BABIES FOR USERID =======
 // =================================
-router.get('/baby', (req, res) => {
+router.get('/baby', checkJwt, (req, res) => {
+  console.log('1', user)
     // models.BabyTable.findAll({
     //   where: {
-    //     userId: req.user.userid
+    //     userId: req.user.user_id
     //   }
     // })
   res.json({message: "you've made it!"});
