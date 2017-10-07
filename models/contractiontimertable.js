@@ -6,9 +6,5 @@ module.exports = function(sequelize, DataTypes) {
     userId: DataTypes.STRING
   });
 
-  contractionTimerTable.associate = (models) => {
-    contractionTimerTable.belongsTo(models.AuthOUserId)
-  }
-
   return contractionTimerTable;
 };

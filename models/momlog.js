@@ -4,10 +4,6 @@ module.exports = function(sequelize, DataTypes) {
     log: DataTypes.TEXT,
     userId: DataTypes.STRING
   })
-
-  momlog.associate = (models) => {
-    momlog.belongsTo(models.AuthOUserId)
-  }
   
   return momlog;
 };

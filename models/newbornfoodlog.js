@@ -9,9 +9,6 @@ module.exports = function(sequelize, DataTypes) {
     userId: DataTypes.STRING
   });
 
-  newbornfoodlog.associate = (models) => {
-    newbornfoodlog.belongsTo(models.AuthOUserId)
-  }
 
   return newbornfoodlog;
 };
