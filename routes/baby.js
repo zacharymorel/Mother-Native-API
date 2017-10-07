@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models')
 var checkJwt = require('../middleware/jwt.js')
+const cors = require('cors');
+router.use(cors());
+
 
 // =================================
 //  HANDLE BABY AND BABY LOG ROUTES 
@@ -20,8 +23,6 @@ router.get('/baby', checkJwt, (req, res) => {
     // })
   res.json({message: "you've made it!"});
 });
-
-
 
 
 
