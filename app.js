@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 
-app.use('/api', baby);
+app.use('/api/baby', baby);
 app.use('/api/mom', mom);
 app.use('/api/images', images)
 

@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models')
-var checkJwt = require('../middleware/jwt')
-const cors = require('cors');
-router.use(cors()); 
+// var checkJwt = require('../middleware/jwt')
+// const cors = require('cors');
+// router.use(cors()); 
 
 
 // =================================
@@ -14,7 +14,7 @@ router.use(cors());
 // =================================
 // === ALL BABIES FOR USERID =======
 // =================================
-router.get('/baby', (req, res, next) => {
+router.get('/', (req, res, next) => {
   console.log('1', user)
     // models.BabyTable.findAll({
     //   where: {
