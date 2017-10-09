@@ -18,6 +18,9 @@ router.post('/upload', (req, res) => {
       });
 })
 
+router.get('/test' , (req, res) => {
+    res.json({message: 'testing 101'})
+})
 
 
 

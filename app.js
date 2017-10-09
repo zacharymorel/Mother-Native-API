@@ -22,7 +22,7 @@ app.use(cookieParser());
 
 app.use('/api', baby);
 app.use('/api/mom', mom);
-app.use('/api', images)
+app.use('/api/images', images)
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
