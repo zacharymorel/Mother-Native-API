@@ -4,7 +4,7 @@ var models = require('../models')
 
 
 // ==========================
-// ==== IMAGE UPLOAD ========
+// == IMAGE UPLOAD ROTUES ===
 // ==========================
 
 
