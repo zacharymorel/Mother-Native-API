@@ -3,8 +3,6 @@ var router = express.Router();
 var models = require('../models')
 var checkJwt = require('../middleware/jwt')
 
-
-
 // =================================
 //  HANDLE BABY AND BABY LOG ROUTES 
 // =================================
