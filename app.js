@@ -4,13 +4,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var pg = require('pg');
+var cors = require('cors')
 
 var baby = require('./routes/baby')
 var mom = require('./routes/mom');
 var images = require('./routes/images');
 
 var app = express();
-
+app.use(cors())
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
