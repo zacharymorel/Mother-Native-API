@@ -54,11 +54,11 @@ router.put("/:id", checkJwt, (req, res) => {
 });
 
 // ====================================
-// ==== CREAT A NEW BABY ==============
+// ==== CREATE A NEW BABY =============
 // ====================================
 router.post("/", checkJwt, (req, res) => {
   console.log("this user is ", req.user.sub);
-  const baby = models.babyId
+  const baby = models.BabyTable
     .build({
       userId: req.user.sub,
       name: req.body.name,
@@ -73,8 +73,47 @@ router.post("/", checkJwt, (req, res) => {
 });
 
 // ====================================
-// ===== SHOW ALL BABY LOG BY USER ====
+// === SHOW ALL BABY LOGS BY USER =====
 // ====================================
+router.get("/babylog", checkJwt, (req, res) => {
+  model.newbornfoodlog
+    .findAll({
+      where: {
+        userId: req.user.sub
+      }
+    })
+    .then(logs => {
+      res.json(logs);
+    });
+});
 
+// ====================================
+// == SHOW SPECIFIC BABY LOG BY USER ==
+// ====================================
+router.get("/babylog/:id", checkJwt, (req, res) => {
+  models.newbornfoodlog.findById(req.params.id).then(logId => {
+    res.json(logId);
+  });
+});
+
+// ====================================
+// === CREATE A LOG FOR A BABY ========
+// ====================================
+router.post("/babylog", checkJwt, (req, res) => {
+  const babyLog = models.newbornfoodlog
+    .build({
+      userID: req.user.sub,
+      name: req.body.name,
+      diaperchange: req.body.diaperchange,
+      sleep: req.body.sleep,
+      bottle: req.body.bottle,
+      breastfed: req.body.breastfed,
+      notes: req.body.notes
+    })
+    .save()
+    .then(babyLog => {
+      res.json(babyLog);
+    });
+});
 
 module.exports = router;
