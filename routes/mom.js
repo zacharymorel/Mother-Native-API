@@ -10,20 +10,26 @@ var checkJwt = require("../middleware/jwt");
 // ===================================
 // === SPECIFIC USER CONTRACTION =====
 // ===================================
-router.get('/contraction/:id', checkJwt, (req, res) => {
-  models.contractionTimerTable.findById(req.params.id).then(log => {
-    res.json(log);
-  });
+router.get("/contraction", checkJwt, (req, res) => {
+  models.contractionTimerTable
+    .findAll({
+      where: {
+        userId: req.user.sub
+      }
+    })
+    .then(log => {
+      res.json(log);
+    });
 });
 
 // ===================================
-// ==== CREATE A NEW LOG BUY USER ====
+// == CREATE A NEW CONTRACTION USER ==
 // ===================================
-router.post('/contraction', checkJwt, (req, res) => {
+router.post("/contraction", checkJwt, (req, res) => {
   const log = models.contractionTimerTable
     .build({
       userId: req.user.sub,
-      clocktimerstampstart: req.body.clocktimerstampstart,
+      duration: req.body.duration,
       clocktimerstampstop: req.body.clocktimerstampstop
     })
     .save()
@@ -32,10 +38,25 @@ router.post('/contraction', checkJwt, (req, res) => {
     });
 });
 
+//====================================
+// ======== DESTROY LOG ROUTE ========
+//====================================
+router.delete("/contraction", checkJwt, (req, res) => {
+  models.contractionTimerTable
+    .destroy({
+      where: {
+        userId: req.user.sub
+      }
+    })
+    .then(whatIsLeft => {
+      res.json(whatIsLeft);
+    });
+});
+
 // ===================================
 // == SHOW ALL MOM LOGS BUY USER =====
 // ===================================
-router.get('/momlog', checkJwt, (req, res) => {
+router.get("/momlog", checkJwt, (req, res) => {
   model.momlog
     .findAll({
       where: {
@@ -50,26 +71,25 @@ router.get('/momlog', checkJwt, (req, res) => {
 // ===================================
 // ==== SPECIFIC MOM LOG =============
 // ===================================
-router.get('/momlog/:id', checkJwt, (req, res) => {
+router.get("/momlog/:id", checkJwt, (req, res) => {
   models.momlog.findById(req.params.id).then(log => {
-    res.json(log)
-  })
-})
+    res.json(log);
+  });
+});
 
 // ===================================
 // ====== CREATE NEW MOM LOG ENTRY ===
 // ===================================
-router.post('/momlog', checkJwt, (req, res) => {
-  const momLog = models.momlog.build({
-    userId: req.user.sub,
-    log: req.body.log
-  })
-  .save()
-  .then(momLog => {
-    res.json(momLog)
-  })
-})
- 
-
+router.post("/momlog", checkJwt, (req, res) => {
+  const momLog = models.momlog
+    .build({
+      userId: req.user.sub,
+      log: req.body.log
+    })
+    .save()
+    .then(momLog => {
+      res.json(momLog);
+    });
+});
 
 module.exports = router;
