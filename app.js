@@ -9,7 +9,6 @@ var cors = require('cors')
 var baby = require('./routes/baby')
 var mom = require('./routes/mom');
 // var images = require('./routes/images');
-var apidoc = require('./routes/apidoc')
 
 var app = express();
 app.use(cors())
@@ -24,7 +23,6 @@ app.use(express.static('public'));
 
 app.use('/api/baby', baby);
 app.use('/api/mom', mom);
-app.use('/apidoc', apidoc)
 // app.use('/api/images', images);
 
 // catch 404 and forward to error handler
