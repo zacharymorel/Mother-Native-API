@@ -10,6 +10,18 @@ var checkJwt = require("../middleware/jwt");
 // =================================
 // === ALL BABIES FOR USERID =======
 // =================================
+/**
+ * @api {get} /api/baby Request All User Babies
+ * @apiName GETAllUserBabies
+ * @apiGroup Baby
+ *
+ * @apiParam {String} Payload id_Token UserId from Auth0.
+ *
+ * @apiSuccess {String} name Name of Baby
+ * @apiSuccess {Date} duedate Baby Due Date
+ * @apiSuccess {Date} birthdate Birthday of Baby
+ * @apiSuccess {String} gender Gender of Baby
+ */
 router.get("/", checkJwt, function(req, res, next) {
   console.log("this user is ", req.user.sub);
   models.BabyTable

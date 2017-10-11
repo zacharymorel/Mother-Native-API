@@ -97,6 +97,15 @@ router.delete("/contraction", checkJwt, (req, res) => {
 // ===================================
 // == SHOW ALL MOM LOGS BUY USER =====
 // ===================================
+/**
+ * @api {get} /api/mom/momlog Request All User MomLogs
+ * @apiName GETAllUserMomLogs
+ * @apiGroup Momlog
+ *
+ * @apiParam {String} Payload id_Token UserId from Auth0.
+ *
+ * @apiSuccess {Array} text Array of Text logs sorted by the User.
+ */
 router.get("/momlog", checkJwt, (req, res) => {
   model.momlog
     .findAll({
@@ -114,6 +123,15 @@ router.get("/momlog", checkJwt, (req, res) => {
 // ===================================
 // ==== SPECIFIC MOM LOG =============
 // ===================================
+/**
+ * @api {get} /api/mom/momlog/:id Request A Specific User MomLog
+ * @apiName GETSpecificUserMomLogs
+ * @apiGroup Momlog
+ *
+ * @apiParam {Number} id The id of specific Mom log entry
+ *
+ * @apiSuccess {Array} text Text of the specific Mom log entry
+ */
 router.get("/momlog/:id", checkJwt, (req, res) => {
   models.momlog.findById(req.params.id).then(log => {
     res.json(log);
@@ -125,6 +143,16 @@ router.get("/momlog/:id", checkJwt, (req, res) => {
 // ===================================
 // ====== CREATE NEW MOM LOG ENTRY ===
 // ===================================
+/**
+ * @api {post} /api/mom/momlog Create A User MomLog
+ * @apiName POSTNewMomLogEntry
+ * @apiGroup Momlog
+ *
+ * @apiParam {String} Payload id_Token UserId from Auth0.
+ * @apiParam {Text} log Need the text from the body.
+ * 
+ * @apiSuccess {Text} log Text of the specific recently created Log
+ */
 router.post("/momlog", checkJwt, (req, res) => {
   const momLog = models.momlog
     .build({
