@@ -7,9 +7,21 @@ var checkJwt = require("../middleware/jwt");
 // ==== CONTRACTION AND MOM LOG =====
 // ==================================
 
+
+
 // ===================================
-// === SPECIFIC USER CONTRACTION =====
+// === ALL USER CONTRACTIONS =========
 // ===================================
+/**
+ * @api {get} /api/mom/contraction Request All User Contractions
+ * @apiName GETAllUserContractions
+ * @apiGroup Contractions
+ *
+ * @apiParam {String} Payload id_Token UserId from Auth0.
+ *
+ * @apiSuccess {Date} duration Duration.
+ * @apiSuccess {Date} clocktimerstampstop User TimerStop.
+ */
 router.get("/contraction", checkJwt, (req, res) => {
   models.contractionTimerTable
     .findAll({
@@ -22,9 +34,21 @@ router.get("/contraction", checkJwt, (req, res) => {
     });
 });
 
+
+
 // ===================================
 // == CREATE A NEW CONTRACTION USER ==
 // ===================================
+/**
+ * @api {post} /api/mom/contraction Create A User Contraction
+ * @apiName POSTUserContraction
+ * @apiGroup Contractions
+ *
+ * @apiParam {String} Payload id_Token UserId from Auth0.
+ * @apiParam {Date} duration Duration
+ * @apiParam {Date} clocktimerstampstop User TimerStop
+ *
+ */
 router.post("/contraction", checkJwt, (req, res) => {
   const log = models.contractionTimerTable
     .build({
@@ -38,9 +62,23 @@ router.post("/contraction", checkJwt, (req, res) => {
     });
 });
 
+
+
 //====================================
 // ======== DESTROY LOG ROUTE ========
 //====================================
+/**
+ * @api {delete} /api/mom/contraction Delete All User Contractions
+ * @apiName DELETEAllUserContractions
+ * @apiGroup Contractions
+ *
+ * @apiParam {String} Payload id_Token UserId from Auth0.
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "message": "deletion successful"
+ *     }
+ */
 router.delete("/contraction", checkJwt, (req, res) => {
   models.contractionTimerTable
     .destroy({
@@ -49,9 +87,12 @@ router.delete("/contraction", checkJwt, (req, res) => {
       }
     })
     .then(whatIsLeft => {
-      res.json(whatIsLeft);
+      res.json({message: "deletion successful"});
     });
 });
+
+
+
 
 // ===================================
 // == SHOW ALL MOM LOGS BUY USER =====
@@ -68,6 +109,8 @@ router.get("/momlog", checkJwt, (req, res) => {
     });
 });
 
+
+
 // ===================================
 // ==== SPECIFIC MOM LOG =============
 // ===================================
@@ -76,6 +119,8 @@ router.get("/momlog/:id", checkJwt, (req, res) => {
     res.json(log);
   });
 });
+
+
 
 // ===================================
 // ====== CREATE NEW MOM LOG ENTRY ===
