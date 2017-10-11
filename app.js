@@ -8,7 +8,8 @@ var cors = require('cors')
 
 var baby = require('./routes/baby')
 var mom = require('./routes/mom');
-var images = require('./routes/images');
+// var images = require('./routes/images');
+var apidoc = require('./routes/apidoc')
 
 var app = express();
 app.use(cors())
@@ -19,10 +20,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 app.use('/api/baby', baby);
 app.use('/api/mom', mom);
+app.use('/apidoc', apidoc)
 // app.use('/api/images', images);
 
 // catch 404 and forward to error handler
