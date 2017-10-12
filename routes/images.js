@@ -85,7 +85,7 @@ router.post("/upload", checkJwt, (req, res) => {
   const saveToDatabase = next => {
     const url = models.Images.build({
         userId: req.user.sub,
-        images: req.secure_url 
+        images: secure_url 
     })
     .save()
     .then(url => {
@@ -93,7 +93,7 @@ router.post("/upload", checkJwt, (req, res) => {
     })    
   };
 
-  const tasks = [saveFile, uploadToStorage, deleteFile, saveToDatabase];
+  const tasks = [saveFile, uploadToStorage, saveToDatabase, deleteFile];
 
   async.waterfall(tasks, err => {
     console.log("complete", "error was", err);
