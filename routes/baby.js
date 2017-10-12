@@ -131,6 +131,15 @@ router.post("/", checkJwt, (req, res) => {
 // ====================================
 // === SHOW ALL BABY LOGS BY USER =====
 // ====================================
+/**
+ * @api {get} /api/baby/babylog Request All User Babylogs
+ * @apiName GETALLUserBabylogs
+ * @apiGroup Babylog
+ *
+ * @apiParam {String} Payload id_Token UserId from Auth0.
+ * 
+ * @apiSuccess {Array} log Array of Babylogs that User has Submited.
+ */
 router.get("/babylog", checkJwt, (req, res) => {
   model.newbornfoodlog
     .findAll({
@@ -146,6 +155,21 @@ router.get("/babylog", checkJwt, (req, res) => {
 // ====================================
 // == SHOW SPECIFIC BABY LOG BY USER ==
 // ====================================
+/**
+ * @api {get} /api/baby/babylog/:id Request Specific User Babylog
+ * @apiName GETSpecificUserBabylog
+ * @apiGroup Babylog
+ *
+ * @apiParam {String} Payload id_Token UserId from Auth0.
+ * @apiParam {Number} id The Babylog id in URL. 
+ * 
+ * @apiSuccess {String} name Specific name that Baby.
+ * @apiSuccess {String} diaperchange Diaperchanghe Status.
+ * @apiSuccess {Time} sleep How long did the Baby Sleep?
+ * @apiSuccess {Number} bottle Ounces.
+ * @apiSuccess {Time} breastfed How long did they eat?
+ * @apiSuccess {String} notes Any notes from Baby log
+ */
 router.get("/babylog/:id", checkJwt, (req, res) => {
   models.newbornfoodlog.findById(req.params.id).then(logId => {
     res.json(logId);
@@ -155,6 +179,27 @@ router.get("/babylog/:id", checkJwt, (req, res) => {
 // ====================================
 // === CREATE A LOG FOR A BABY ========
 // ====================================
+/**
+ * @api {Post} /api/baby/babylog Create A New User Babylog
+ * @apiName POSTNewUserBabylog
+ * @apiGroup Babylog
+ *
+ * @apiParam {String} Payload id_Token UserId from Auth0.
+ * @apiParam {Number} id The Babylog id in URL. 
+ * 
+ * @apiSuccess {String} name Specific name that Baby.
+ * @apiSuccess {String} diaperchange Diaperchanghe Status.
+ * @apiSuccess {Time} sleep How long did the Baby Sleep?
+ * @apiSuccess {Number} bottle Ounces.
+ * @apiSuccess {Time} breastfed How long did they eat?
+ * @apiSuccess {String} notes Any notes from Baby log
+ *  * @apiSuccess {Array} Empty Emptry Array
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "message": "Creation successful"
+ *     }
+ */
 router.post("/babylog", checkJwt, (req, res) => {
   const babyLog = models.newbornfoodlog
     .build({
@@ -168,7 +213,7 @@ router.post("/babylog", checkJwt, (req, res) => {
     })
     .save()
     .then(babyLog => {
-      res.json(babyLog);
+      res.json(babyLog, {"message": "Creation successful"});
     });
 });
 
