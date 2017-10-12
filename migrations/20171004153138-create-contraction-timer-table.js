@@ -9,10 +9,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       clocktimerstampstart: {
-        type: Sequelize.TIME
+        type: Sequelize.INTEGER
       },
       clocktimerstampstop: {
-        type: Sequelize.TIME
+        type: Sequelize.DATE
       },
       userId: {
         type: Sequelize.STRING
