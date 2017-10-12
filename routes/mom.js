@@ -128,6 +128,7 @@ router.get("/momlog", checkJwt, (req, res) => {
  * @apiName GETSpecificUserMomLogs
  * @apiGroup Momlog
  *
+ * @apiParam {String} Payload id_Token UserId from Auth0.
  * @apiParam {Number} id The id of specific Mom log entry
  *
  * @apiSuccess {Array} text Text of the specific Mom log entry

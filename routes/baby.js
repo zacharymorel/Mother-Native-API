@@ -41,6 +41,14 @@ router.get("/", checkJwt, function(req, res, next) {
 // ====================================
 // === FIND SPECIFIC BABY BY USERID ===
 // ====================================
+/**
+ * @api {get} /api/baby/:id Request Specific User Baby
+ * @apiName GETSpecificUserBaby
+ * @apiGroup Baby
+ *
+ * @apiParam {String} Payload id_Token UserId from Auth0.
+ * @apiParam {Number} id The Baby id.
+ */
 router.get("/:id", checkJwt, (req, res) => {
   models.BabyTable.findById(req.params.id).then(babyId => {
     res.json(babyId);
