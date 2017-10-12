@@ -150,9 +150,9 @@ router.get("/momlog/:id", checkJwt, (req, res) => {
  * @apiGroup Momlog
  *
  * @apiParam {String} Payload id_Token UserId from Auth0.
- * @apiParam {Text} log Need the text from the body.
+ * @apiParam {String} log Need the text from the body.
  * 
- * @apiSuccess {Text} log Text of the specific recently created Log
+ * @apiSuccess {String} log Text of the specific recently created Log
  */
 router.post("/momlog", checkJwt, (req, res) => {
   const momLog = models.momlog

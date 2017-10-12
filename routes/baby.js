@@ -47,7 +47,7 @@ router.get("/", checkJwt, function(req, res, next) {
  * @apiGroup Baby
  *
  * @apiParam {String} Payload id_Token UserId from Auth0.
- * @apiParam {Number} id The Baby id.
+ * @apiParam {Number} id The Baby id in URL.
  */
 router.get("/:id", checkJwt, (req, res) => {
   models.BabyTable.findById(req.params.id).then(babyId => {
@@ -58,6 +58,23 @@ router.get("/:id", checkJwt, (req, res) => {
 // ====================================
 // ====== EDIT SPECIFIC BABY ==========
 // ====================================
+/**
+ * @api {put} /api/baby/:id Edit A Specific User Baby
+ * @apiName PUTSpecificUserBaby
+ * @apiGroup Baby
+ *
+ * @apiParam {String} Payload id_Token UserId from Auth0.
+ * @apiParam {Number} id The Baby id in URL. 
+ * @apiParam {String} name The Baby Name 
+ * @apiParam {Date} duedate Duedate of Baby. 
+ * @apiParam {Date} birthdate The Baby Brithday. 
+ * @apiParam {String} gender The Baby Gender. 
+ * 
+ * @apiSuccess {String} name Edited Baby Name
+ * @apiSuccess {Date} duedate Edited Duedate of Baby.
+ * @apiSuccess {Date} birthdate Edited Baby Brithday.
+ * @apiSuccess {String} gender Edited Baby Gender. 
+ */
 router.put("/:id", checkJwt, (req, res) => {
   models.BabyTable.findById(req.params.id).then(babyId => {
     babyId
@@ -76,6 +93,25 @@ router.put("/:id", checkJwt, (req, res) => {
 // ====================================
 // ==== CREATE A NEW BABY =============
 // ====================================
+/**
+ * @api {post} /api/baby/ Create A New User Baby
+ * @apiName POSTNewUserBaby
+ * @apiGroup Baby
+ *
+ * @apiParam {String} Payload id_Token UserId from Auth0.
+ * @apiParam {Number} id The Baby id in URL. 
+ * @apiParam {String} name The Baby Name 
+ * @apiParam {Date} duedate Duedate of Baby. 
+ * @apiParam {Date} birthdate The Baby Brithday. 
+ * @apiParam {String} gender The Baby Gender. 
+ * 
+ * @apiSuccess {Array} Empty Emptry Array
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "message": "Creation successful"
+ *     }
+ */
 router.post("/", checkJwt, (req, res) => {
   console.log("this user is ", req.user.sub);
   const baby = models.BabyTable
@@ -88,7 +124,7 @@ router.post("/", checkJwt, (req, res) => {
     })
     .save()
     .then(baby => {
-      res.json(baby);
+      res.json(baby, {"message": "Creation successful"});
     });
 });
 
