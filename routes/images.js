@@ -6,7 +6,10 @@ const fileUpload = require("express-fileupload");
 const fs = require("fs");
 const async = require("async");
 var models = require("../models");
+var checkJwt = require("../middleware/jwt");
+
 let keys = {}
+
 
 if (process.env.NODE_ENV !== "production"){
     keys = require("../config");
@@ -48,9 +51,9 @@ const genGuid = () => {
 // ======================================
 // ==== UPLOAD A PICTURE ================
 // ======================================
-router.post("/upload", (req, res) => {
+router.post("/upload", checkJwt, (req, res) => {
   const _filePath =
-    __dirname + "/uploads/" + genGuid() + "_" + req.files.image.name;
+    __dirname.replace("/routes", "") + "/uploads/" + genGuid() + "_" + req.files.image.name;
   let secure_url = "";
   // add the file to server to a temp folder -- so we can get a file path
   const saveFile = next => {
@@ -84,7 +87,6 @@ router.post("/upload", (req, res) => {
         userId: req.user.sub,
         images: req.secure_url 
     })
-    console.log("saving to databse", secure_url)    
     .save()
     .then(url => {
         next();
