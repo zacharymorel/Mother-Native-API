@@ -6,9 +6,11 @@ const fileUpload = require("express-fileupload");
 const fs = require("fs");
 const async = require("async");
 var models = require("../models");
+let keys = {}
 
-
-const keys = require("../config");
+if (process.env.NODE_ENV !== "production"){
+    keys = require("../config");
+}
 router.use(fileUpload());
 
 cloudinary.config({
