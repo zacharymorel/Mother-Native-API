@@ -51,6 +51,20 @@ const genGuid = () => {
 // ======================================
 // ==== UPLOAD A PICTURE ================
 // ======================================
+/**
+ * @api {Post} /api/images/upload Create A New User Babylog
+ * @apiName POSTUploadANewImage
+ * @apiGroup Images
+ *
+ * @apiParam {String} Payload id_Token UserId from Auth0.
+ * @apiParam {String} image Input tag type="file"
+ * 
+ * @apiSuccessExample {json} Success-Response:
+ *     HTTP/1.1 200 OK
+ *     {
+ *       "Image": "Upload successful"
+ *     }
+ */
 router.post("/upload", checkJwt, (req, res) => {
   const _filePath =
     __dirname.replace("/routes", "") + "/uploads/" + genGuid() + "_" + req.files.image.name;
@@ -97,15 +111,30 @@ router.post("/upload", checkJwt, (req, res) => {
 
   async.waterfall(tasks, err => {
     console.log("complete", "error was", err);
-    res.json(err);
+    res.json(err, {"Image": "Upload successful"});
   });
 });
 
-router.get("/", (req, res) => {
-    res.json({"hellow":"world"})
+// ======================================
+// ====== FIND ALL IMAGE FOR USER =======
+// ======================================
+/**
+ * @api {get} /api/images/all Request All User Images
+ * @apiName GETAllUserImages
+ * @apiGroup Images
+ *
+ * @apiParam {String} Payload id_Token UserId from Auth0.
+ *
+ * @apiSuccess {Array} image Array of images from User.
+ */
+router.get("/all", (req, res) => {
+  models.Images.findall({
+    where: {
+      userId: req.user.sub
+    }
+  }).then(image => {
+    res.json(image)
+  })
 })
-// ======================================
-// ======= SHOW IMAGE FOR USER ==========
-// ======================================
 
 module.exports = router;

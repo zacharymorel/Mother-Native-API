@@ -193,7 +193,7 @@ router.get("/babylog/:id", checkJwt, (req, res) => {
  * @apiSuccess {Number} bottle Ounces.
  * @apiSuccess {Time} breastfed How long did they eat?
  * @apiSuccess {String} notes Any notes from Baby log
- *  * @apiSuccess {Array} Empty Emptry Array
+ * @apiSuccess {Array} Empty Emptry Array
  * @apiSuccessExample {json} Success-Response:
  *     HTTP/1.1 200 OK
  *     {
