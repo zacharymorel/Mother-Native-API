@@ -10,9 +10,10 @@ Technologies used:
   - PostgresSQL
   - Sequelize ORM
   - Auth0 (authentication)
-  - JWT
+  - JWT (token authentication from Client-React => Node Server)
   - Cloudinary API (image Storing)
-  - Heroku Deployment
+  - Heroku Deployment (deploying my API)
+  - apiDocjs (library for documenting my Api's)
 
 FRONT END REPO
 - React.js
